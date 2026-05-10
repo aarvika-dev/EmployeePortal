@@ -1,1 +1,115 @@
-<p>gggg</p>
+<main class="site-shell">
+  <section class="intro-panel" aria-labelledby="page-title">
+    <div class="intro-copy">
+      <p class="kicker">Website concepts for a 50K subscriber developer channel</p>
+      <h1 id="page-title">Three complete UI directions for your YouTube, blogs, batches, APIs, and mentorship business.</h1>
+      <p>
+        Each sample is built around Google Ads-friendly content depth, clear page sections, useful navigation,
+        policy-safe ad slots, and strong discovery for tutorials across Angular, React, and .NET.
+      </p>
+    </div>
+    <aside class="ad-preview" aria-label="Google Ads ready preview">
+      <span>Ad-ready layout</span>
+      <strong>728 × 90</strong>
+      <small>Reserved banner position with content separation</small>
+    </aside>
+  </section>
+
+  <section
+    *ngFor="let theme of themes; let themeIndex = index"
+    class="theme-section"
+    [ngClass]="'theme-' + theme.layout"
+    [style.--theme-accent]="theme.accent"
+  >
+    <div class="theme-toolbar">
+      <div>
+        <p class="theme-eyebrow">{{ theme.eyebrow }}</p>
+        <h2>{{ theme.name }}</h2>
+      </div>
+      <span class="theme-badge">{{ theme.badge }}</span>
+    </div>
+
+    <div class="website-frame">
+      <header class="sample-nav">
+        <a class="brand" href="#" aria-label="Code mentor home">
+          <span>JS</span>
+          <strong>JSMentor</strong>
+        </a>
+        <nav aria-label="Sample navigation">
+          <a *ngFor="let navItem of theme.navigation" href="#">
+            {{ navItem.label }}
+            <small>{{ navItem.target }}</small>
+          </a>
+        </nav>
+        <button type="button">Join live</button>
+      </header>
+
+      <div class="sample-hero">
+        <div class="hero-copy">
+          <span class="hero-pill">{{ theme.eyebrow }}</span>
+          <h3>{{ theme.headline }}</h3>
+          <p>{{ theme.description }}</p>
+          <div class="hero-actions">
+            <a href="#">Explore videos</a>
+            <a href="#">Book 1:1 call</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" [attr.aria-label]="theme.name + ' visual preview'">
+          <ng-container [ngSwitch]="theme.layout">
+            <div *ngSwitchCase="'cinema'" class="slider-card">
+              <span>Featured this week</span>
+              <strong>Angular 21 interview masterclass</strong>
+              <p>Carousel slide with video thumbnail, cohort CTA, and safe sponsored zone below.</p>
+              <div class="slider-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            </div>
+
+            <div *ngSwitchCase="'studio'" class="mentor-card">
+              <span>Mentorship board</span>
+              <strong>CV review + mock interview</strong>
+              <p>Trust-first panel for one-to-one offerings, live batches, and student outcomes.</p>
+              <div class="calendar-strip"><b>Sat</b><b>Sun</b><b>Live</b></div>
+            </div>
+
+            <div *ngSwitchDefault class="dashboard-card">
+              <span>Academy dashboard</span>
+              <strong>Continue learning</strong>
+              <p>Course progress, API docs, live session reminders, and recommended playlist modules.</p>
+              <div class="progress-lines"><i></i><i></i><i></i></div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <article *ngFor="let metric of theme.metrics">
+          <strong>{{ metric.value }}</strong>
+          <span>{{ metric.label }}</span>
+        </article>
+      </div>
+
+      <div class="content-layout">
+        <section class="content-feed" aria-label="Content modules">
+          <article *ngFor="let card of theme.cards" class="content-card">
+            <span>{{ card.tag }}</span>
+            <h4>{{ card.title }}</h4>
+            <p>{{ card.description }}</p>
+          </article>
+        </section>
+
+        <aside class="right-rail" aria-label="Ads and project APIs">
+          <div class="ad-box">
+            <span>Advertisement</span>
+            <strong>300 × 250</strong>
+          </div>
+          <div class="api-box">
+            <h4>Project API library</h4>
+            <ul>
+              <li *ngFor="let project of apiProjects.slice(themeIndex, themeIndex + 3)">{{ project }}</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
